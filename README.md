@@ -1,1 +1,1 @@
-# Arquivos disponibilizados para realizar consultas e alterações no código tendo como único objetivo a aprendizagem.
+#Arquivos das atividades e trabalhos desenvolvidos durante aula.
