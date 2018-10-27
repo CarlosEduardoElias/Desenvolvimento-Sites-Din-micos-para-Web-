@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,800');
+
+body {
+	margin: 0;
+	padding: 0;
+	font: 16px Montserrat, Tahoma;
+	padding-top: 70px; 
+}
+
+header {
+	width: 100%;
+	background: #FFF;
+	float: left;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+}
+
+header .logo {
+	float: left;
+	margin: 10px;
+}
+
+header nav {
+	float: right;
+	margin-top: 15px; 
+}
+
+header nav ul li {
+	display: inline;
+	list-style: none;
+}
+
+header nav ul li a {
+	text-decoration: none;
+	font-weight: 800;
+	color: #F00;
+	margin: 10px;
+	padding: 10px;
+	transition: all 0.5s;
+	border-radius: 7%;
+}
+
+header ul li a:hover{
+	background: #F00;
+	color: #FFF;
+}
+
+footer {
+	width: 100%;
+	float: left;
+	padding: 80px 0;
+	height: 50px;
+	background: url("../imagens/bacon.jpg");
+	background-size: cover;
+}
+
+.cycle-slideshow img {
+	width: 100%;
+}
+
+.center {
+	text-align: center;
+}
+
+footer p {
+	font-weight: 800;
+}
+
+.pagina {
+	width: 900px;
+	margin: auto;
+}
+
+.lanche {
+	width: 280px;
+	float: left;
+	margin: 5px;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+.lanche img {
+	width: 90%;
+}

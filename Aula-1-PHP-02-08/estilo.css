@@ -1,0 +1,62 @@
+body {
+	font-family: Arial, Tahoma, Verdana;
+	font-size: 16px;
+	color: #000;
+	text-align: left;
+	background: #D3D3D3;
+}
+
+.container {
+	width: 960px;
+	margin: 0;
+}
+
+h1 {
+	text-align: left;
+	font-size: 26px;
+	margin: 10px;
+	color:;
+}
+
+form {
+	width: 780px;
+	margin: 10px;
+}
+
+label {
+	font-size: 16px;
+	margin: 10px;
+	margin-bottom: 5px; 
+}
+
+input {
+	border-radius: 5.5%;
+	padding: 5px;
+	margin: 10px;
+}
+
+select {
+	padding: 5px;
+	font-size: 14px;
+	border-radius: 5.5%;
+}
+
+textarea {
+	border-radius: 3%;
+	padding: 5px;
+	text-align: left;
+	margin: 10px;
+	font-size: 14px;
+}
+
+button {
+	border-radius: 5.9%;
+	background: #ccc;
+	padding: 10px;
+	margin: 0;	
+}
+
+button:hover {
+	background: green;
+	color: #fff;
+}
