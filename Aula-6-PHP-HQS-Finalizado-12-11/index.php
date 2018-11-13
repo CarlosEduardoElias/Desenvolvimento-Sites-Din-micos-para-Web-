@@ -1,14 +1,46 @@
 <?php
-	//conexão com o banco
-	$connect = mysqli_connect(
-	"localhost",
-	"root",
-	"",
-	"hqs"
-	);
-	$connect-> set_charset("utf8");
+	//conexao com o banco de dados
+	$conexao = mysqli_connect(
+		"localhost",
+		"root",
+		"",
+		"hqs"
+	);	
 	//servidor, usuario do banco, senha do usuario, banco de dados
-	
+
+	//modificar o charset
+	mysqli_set_charset($conexao,"utf8");
+
+	//definir a pagina como home
+	$pagina = "home";
+
+	//recuperar o parametro
+	if ( isset ( $_GET["parametro"] ) )
+	{
+		$pagina = trim ( $_GET["parametro"]);
+
+		//quebra uma string a partir de um caracter
+		$p = explode("/", $pagina); 
+		
+		//print_r($p);
+		// $p[0] - nome da pagina
+		// $p[1] - id do registro
+		$pagina = $p[0];
+	}
+
+	//verificar qual pagina ira carregar
+	if ( $pagina == "sobre" )
+		$titulo = "Sobre a Hqs";
+	else if ( $pagina == "contato" )
+		$titulo = "Entre em Contato";
+	else if ( $pagina == "personagens" )
+		$titulo = "Personagens";
+	else if ( $pagina == "editora" ) 
+		$titulo = "Editoras";
+	else if ( $pagina == "tipo" )
+		$titulo = "Tipo de Quadrinhos";
+	else
+		$titulo = "Página Inicial";
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,36 +75,45 @@
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">Editoras</a>
 	        <div class="dropdown-menu">
-	        	<?php
-	        	//mostrar os itens da tabela editoras
-	        	$sql = "select * from editora order by nome";
-	        	$resultado = mysqli_query($connect, $sql);
-	        	//separar os dados por linha
-	        	while ($linha = mysqli_fetch_array( $resultado )) {
-	        		$id = $linha["id"];
-	        		$nome = $linha["nome"];
-	        		echo "<a href='editora/$id' class='dropdown-item'>$nome
-	        		</a>";
-	        	}
-	        	?> 
+	        <?php
+	        //mostrar as editoras
+	        $sql = "select * from editora 
+	        	order by nome";
+	        //executar
+	        $resultado = mysqli_query($conexao,$sql);
+	        //separar os dados por linha
+	        while ( $linha = mysqli_fetch_array( $resultado ) ) {
+	        	//separar os dados
+	        	$id 	= $linha["id"];
+	        	$nome 	= $linha["nome"];
+	        	//montar o link
+	        	echo "<a href='editora/$id' class='dropdown-item'>$nome</a>";
+
+	        }
+	        ?>
 	        </div>
 	      </li>
 	     
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">Tipo de Quadrinhos</a>
 	        <div class="dropdown-menu">
-	        	<?php
-	        	//mostrar os itens da tabela editoras
-	        	$sql = "select * from tipo order by tipo";
-	        	$resultado = mysqli_query($connect, $sql);
-	        	//separar os dados por linha
-	        	while ($linha = mysqli_fetch_array( $resultado )) {
-	        		$id = $linha["id"];
-	        		$tipo = $linha["tipo"];
-	        		echo "<a href='tipo/$id' class='dropdown-item'>$tipo
-	        		</a>";
-	        	}
-	        	?> 
+	        <?php
+	        //mostrar os tipo de quadrinhos
+	        $sql = "select * from tipo 
+	        order by tipo";
+	        //executar e pegar os resultados
+	        $resultado = mysqli_query($conexao,$sql);
+	        //separar as linhas
+	        while ( $linha = mysqli_fetch_array( $resultado ) ) {
+
+	        	//separar as variaveis
+	        	$id = $linha["id"];
+	        	$tipo = $linha["tipo"];
+	        	//montar o link na tela
+	        	echo "<a href='tipo/$id' class='dropdown-item'>$tipo</a>";
+
+	        }
+	        ?>
 	        </div>
 	      </li>
 	      <li class="nav-item ">
@@ -87,20 +128,18 @@
 
 
 	<main class='container'>
-		<?php 
-		//definir a pagina como home
-		$pagina = "home";
-		//recuperar a pagina
-		if ( isset ($_GET["parametro"]) ) {
-			$pagina = trim ( $_GET["parametro"]);
-		}
-		//configurar a pagina que ira ser inserida
+		<?php
+
+
+		//configurar a pagina que ira ser incluida
 		$pagina = "pages/".$pagina.".php";
-		if ( file_exists($pagina)){
+		//verificar se a págian existe
+		if ( file_exists($pagina) ) {
 			include $pagina;
-		} else {
+		} else{
 			include "erro.php";
 		}
+
 
 		?>
 	</main>
